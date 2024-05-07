@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bstrazdas RayTracer</title>
+        <style>
+            html, 
+            body
+            {
+                background-color: blue;
+                height: 100%;
+                overflow: hidden;
+                margin: 0;
+            }
+
+            .flex-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class ="flex-container">
+            <canvas id = "canvas"></canvas>
+        </div>
+        <script>
+            document.querySelector("canvas").addEventListener("mousemove", mouseMove)
+            function mouseMove(event)
+            {
+                document.title = event.offsetX + " " + event.offsetY;
+            }
+            const urlParams = new URLSearchParams(window.location.search);
+            const myParam = urlParams.get('index');
+            const widthParam = urlParams.get('width');
+            const heightParam = urlParams.get('height');
+            const samplesParam = urlParams.get('samples');
+            const jitterParam = urlParams.get('jitter');
+
+            sceneIndex = myParam ? myParam : 8;
+            width = widthParam ? widthParam : 400;
+            height = heightParam ? heightParam : 400;
+            samples = samplesParam ? samplesParam : 1;
+            jitterAmount = jitterParam ? jitterParam : 0;
+        </script>
+        <script src = "camera.js"></script>
+        <script src = "collision.js"></script>
+        <script src = "light.js"></script>
+        <script src = "mesh.js"></script>
+        <script src = "plane.js"></script>
+        <script src = "rayTracedObject.js"></script>
+        <script src = "scene.js"></script>
+        <script src = "shader.js"></script>
+        <script src = "triangle.js"></script>
+        <script src = "vector3D.js"></script>
+        <script src = "vertex.js"></script>
+        <script src = "rayTracer.js"></script>
+    </body>
+</html>

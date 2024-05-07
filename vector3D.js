@@ -19,4 +19,44 @@ class Vector3D
         this.z = z;
         Object.freeze(this);
     }
+
+    norm()
+    {
+        return new Vector3D(this.x / this.length(), this.y / this.length(), this.z / this.length())
+    }
+
+    length()
+    {
+        return Math.sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
+    }
+
+    dot(other)
+    {
+        return this.x * other.x + this.y * other.y + this.z * other.z;
+    }
+
+    cross(other)
+    {
+        return new Vector3D(this.y * other.z - this.z * other.y, thiz.z * other.x - this.x * other.z, this.x * other.y - this.y * other.x);
+    }
+
+    add(other)
+    {
+        return new Vector3D(this.x + other.x, this.y + other.y, this.z + other.z);
+    }
+
+    negate()
+    {
+        return new Vector3D(-this.x, -this.y, -this.z);
+    }
+
+     minus(other)
+     {
+        return new Vector3D(this.x - other.x, this.y - other.y, this.z - other.z);
+     }
+
+     scale(scalar)
+     {
+        return new Vector3D(this.x * scalar, this.y * scalar, this.z * scalar)
+     }
 }
