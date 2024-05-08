@@ -6,4 +6,8 @@ class Light
         this.color = color;
         this.angle = angle;
     }
+    illumination(origin)
+    {
+        return this.color;
+    }
 }

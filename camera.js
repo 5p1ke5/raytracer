@@ -41,7 +41,7 @@ class Camera
             let xOffset = right.scale(x).scale(sin);
             let yOffset = up.scale(y).scale(sin);
 
-            return this.direction.scal(cos).add(xOffset).add(yOffset).norm();
+            return this.direction.scale(cos).add(xOffset).add(yOffset).norm();
         }
     }
 }

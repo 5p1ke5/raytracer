@@ -15,12 +15,17 @@ class DiffuseShader
     {
         let lightSum = Vector3D.zero;
 
-        for (let light of Screen.scene.lights)
+        for (let light of Scene.scene.lights)
         {
             let inShadow = false;
 
-            for (let object of Scene.scene.rayTracedObjects)
+            for (let object of Scene.scene.objects)
             {
+                if (object == collisionObject)
+                {
+                    continue;
+                }
+                
                 let directionToLight = light.angle.norm();
 
                 let collision = object.geometry.intersect(rayCollision, directionToLight);
@@ -31,7 +36,7 @@ class DiffuseShader
                 }
             }
 
-            let dot = normal.dot(light.direction.norm());
+            let dot = normal.dot(light.angle.norm());
             if (inShadow) dot = 0;
             if (dot <= 0)
             {

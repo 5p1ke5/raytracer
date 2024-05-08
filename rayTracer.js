@@ -50,10 +50,41 @@ async function main()
                     }
 
                     let color = render(x, y, jitterAmount);
+                    count++;
+                    entry.push(color);
+
+                    let r = entry.map(p => p.r).reduce((a, b) => a + b, 0) / count;
+                    let g = entry.map(p => p.g).reduce((a, b) => a + b, 0) / count;
+                    let b = entry.map(p => p.b).reduce((a, b) => a + b, 0) / count;
+
+                    let rstd = entry.map(p => Math.abs(p.r - r)).reduce((a, b) => a + b, 0) / count;
+                    let gstd = entry.map(p => Math.abs(p.r - r)).reduce((a, b) => a + b, 0) / count;
+                    let bstd = entry.map(p => Math.abs(p.r - r)).reduce((a, b) => a + b, 0) / count;
+
+                    let sumNoise = rstd + gstd + bstd;
+                    noise[x][y] = sumNoise;
+
+                    context.fillStyle = `rgb(${r}, ${g}, ${b})`;
+                    context.fillRect(x, y, 1, 1);
+
+                    if (sumNoise > noiseMax)
+                    {
+                        context.fillStyle = `rgb(${sumNoise}, ${sumNoise}, ${sumNoise})`;
+                        context.fillRect(x + width, y, 1, 1);
+                    }
+                }
+
+                if (i > maxIteration)
+                {
+                    maxIteration = i;
+                    console.log(maxIteration / stop);
                 }
             })
         }
     }
+
+    context.fillStyle = "pink"
+    context.fillRect(width/2, height/2, 1, 1);
 }
 
 function render (x, y, jitterAmount)
@@ -75,7 +106,7 @@ function render (x, y, jitterAmount)
     let origin = Scene.scene.camera.getOrigin(startX, startY);
     let direction = Scene.scene.camera.getDirection(startX / (width / 2), startY / (height / 2));
 
-    let jittered = direction.add(new Vector3 (evenRand(jitterAmount), evenRand(jitterAmount), evenRand(jitterAmount)));
+    let jittered = direction.add(new Vector3D(evenRand(jitterAmount), evenRand(jitterAmount), evenRand(jitterAmount)));
 
     direction = jittered;
 

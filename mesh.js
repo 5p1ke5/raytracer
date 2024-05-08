@@ -14,11 +14,10 @@ class Mesh
         // loop over the lines
         for (let line of lines)
         {
-            //remove whitespace
+            //remove extra whitespace
             let trimmedLine = line.trim();
 
             //Ignores all-whitespace lines
-
             if (trimmedLine.length == 0)
             {
                 continue;
@@ -76,6 +75,13 @@ class Mesh
         //Use it to make am esh
         let mesh = new Mesh([triangle]);
         return mesh;
+    }
+
+
+    //Constructs a new mesh from an array of triangles.
+    constructor (triangles)
+    {
+        this.triangles = triangles;
     }
 
     //Finds intersection between the passed ray and this mesh.

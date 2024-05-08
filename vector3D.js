@@ -20,6 +20,21 @@ class Vector3D
         Object.freeze(this);
     }
 
+    get r()
+    {
+      return this.x;
+    }
+  
+    get g()
+    {
+      return this.y;
+    }
+    
+    get b()
+    {
+      return this.z
+    }
+
     norm()
     {
         return new Vector3D(this.x / this.length(), this.y / this.length(), this.z / this.length())
@@ -37,7 +52,7 @@ class Vector3D
 
     cross(other)
     {
-        return new Vector3D(this.y * other.z - this.z * other.y, thiz.z * other.x - this.x * other.z, this.x * other.y - this.y * other.x);
+        return new Vector3D(this.y * other.z - this.z * other.y, this.z * other.x - this.x * other.z, this.x * other.y - this.y * other.x);
     }
 
     add(other)
