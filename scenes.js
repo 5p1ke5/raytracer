@@ -78,12 +78,7 @@ let orthographicCamera = new Camera(
 
 //Geometries
 //Spheres
-let sphere1 = new Sphere(new Vector3D(0, 20, 0), 50);
-let sphere2 = new Sphere(new Vector3D(0, 20, 0), 50);
-let sphere3 = new Sphere(new Vector3D(0, 20, 0), 50);
-let sphere4 = new Sphere(new Vector3D(0, 20, 0), 50);
-let sphere5 = new Sphere(new Vector3D(0, 20, 0), 50);
-let sphere6 = new Sphere(new Vector3D(0, 20, 0), 50);
+let sphere1 = new Sphere(new Vector3D(0, 0, -100), 50);
 
 
 
@@ -95,10 +90,11 @@ let lights = [sun];
 
 //Shaders
 let diffuseShaderWhite = new DiffuseShader({r:255, g:255, b:255});
+let diffuseShaderPink = new DiffuseShader({r:255, g:0, b:255});
 
 
 //Raytraced objects
-let rayTracedSphere1 = new RayTracedObject(sphere1, diffuseShaderWhite);
+let rayTracedSphere1 = new RayTracedObject(sphere1, diffuseShaderPink);
 
 
 //Scenes
@@ -119,4 +115,3 @@ let allScenes =
 //Scene.scene = allScenes[sceneIndex];
 // Scene.scene = allScenes[0];
 Scene.scene = sampleScene;
-console.log(Scene.scene);
